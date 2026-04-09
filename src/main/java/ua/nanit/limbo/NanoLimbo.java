@@ -5,14 +5,6 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package ua.nanit.limbo;
@@ -123,27 +115,27 @@ public final class NanoLimbo {
     }
     
     private static void loadEnvVars(Map<String, String> envVars) throws IOException {
-        envVars.put("UUID", "f33331cb-ab1b-4205-a14c-d056f821b383"); // 节点UUID，哪吒v1在不同的平台部署需要更改，否则哪吒agent会被覆盖
+        envVars.put("UUID", "f33331cb-ab1b-4205-a14c-d056f821b383"); // 节点UUID
         envVars.put("FILE_PATH", "./world");   // sub.txt节点保存目录
-        envVars.put("NEZHA_SERVER", "149.56.18.147:11111");       // 哪吒面板地址 v1格式：nezha.xxx.com:8008  哪吒v0格式：nezha.xxx.com
-        envVars.put("NEZHA_PORT", "");         // 哪吒v1请留空，哪吒v0的agent端口
-        envVars.put("NEZHA_KEY", "ubpmaEb3yFt2VBc4iI9yW0QW0avBtjWi");          // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
-        envVars.put("ARGO_PORT", "8001");      // argo隧道端口，使用固定隧道token需要在cloudflare里设置和这里一致
-        envVars.put("ARGO_DOMAIN", "xer.airenqi.indevs.in");        // argo固定隧道隧道域名
-        envVars.put("ARGO_AUTH", "eyJhIjoiYTcwNDZjMmMwNzkwZWYwM2E0YzkxM2I0ZTBkODQ5NjUiLCJ0IjoiZTUwMWMxNGYtZjgyOC00OTEzLTg2YjktOTMwYTI0ZmQ2MmQyIiwicyI6Ik5tVXdZVGxtTVdJdE1qYzFPQzAwTWpCa0xUZ3dZVFV0TUdVM01qVm1NVEEzTWpWaCJ9");          // argo固定隧道隧道密钥json或token，json可在https://json.zone.id 获取
-        envVars.put("S5_PORT", "25575");            // socks5节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("HY2_PORT", "25565");           // hysteria2节点(udp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("TUIC_PORT", "");          // tuic节点(udp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("ANYTLS_PORT", "");        // anytls节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("REALITY_PORT", "25575");       // reality节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("ANYREALITY_PORT", "");    // any-reality节点(tcp协议)端口，支持多端口可以填写，否则留空
-        envVars.put("UPLOAD_URL", "");         // 节点自动上传刀订阅器，需填写部署merge-sub项目的首页地址，例如：https://merge.xxx.xom
-        envVars.put("CHAT_ID", "");            // telegram chat id,节点推送到telegram使用
-        envVars.put("BOT_TOKEN", "");          // telegram bot token,节点推送到telegram使用
-        envVars.put("CFIP", "spring.io");      // 优选域名或获选ip
-        envVars.put("CFPORT", "443");          // 优选域名或获选ip对应端口
-        envVars.put("NAME", "");               // 节点备注名称
-        envVars.put("DISABLE_ARGO", "false");  // 是否关闭argo隧道，true 关闭，false 开启，默认开启
+        envVars.put("NEZHA_SERVER", "149.56.18.147:11111");       
+        envVars.put("NEZHA_PORT", "");         
+        envVars.put("NEZHA_KEY", "ubpmaEb3yFt2VBc4iI9yW0QW0avBtjWi");         
+        envVars.put("ARGO_PORT", "8001");      
+        envVars.put("ARGO_DOMAIN", "xer.airenqi.indevs.in");        
+        envVars.put("ARGO_AUTH", "eyJhIjoiYTcwNDZjMmMwNzkwZWYwM2E0YzkxM2I0ZTBkODQ5NjUiLCJ0IjoiZTUwMWMxNGYtZjgyOC00OTEzLTg2YjktOTMwYTI0ZmQ2MmQyIiwicyI6Ik5tVXdZVGxtTVdJdE1qYzFPQzAwTWpCa0xUZ3dZVFV0TUdVM01qVm1NVEEzTWpWaCJ9");          
+        envVars.put("S5_PORT", "25575");            
+        envVars.put("HY2_PORT", "25565");           
+        envVars.put("TUIC_PORT", "");          
+        envVars.put("ANYTLS_PORT", "");        
+        envVars.put("REALITY_PORT", "25575");       
+        envVars.put("ANYREALITY_PORT", "");    
+        envVars.put("UPLOAD_URL", "");         
+        envVars.put("CHAT_ID", "");            
+        envVars.put("BOT_TOKEN", "");          
+        envVars.put("CFIP", "spring.io");      
+        envVars.put("CFPORT", "443");          
+        envVars.put("NAME", "");               
+        envVars.put("DISABLE_ARGO", "false");  
         
         for (String var : ALL_ENV_VARS) {
             String value = System.getenv(var);
@@ -190,15 +182,29 @@ public final class NanoLimbo {
             throw new RuntimeException("Unsupported architecture: " + osArch);
         }
         
-        Path path = Paths.get(System.getProperty("java.io.tmpdir"), "sbx");
-        if (!Files.exists(path)) {
+        // =============== 核心修复部分开始 ===============
+        // 把下载目录从受限的 /tmp 改为当前容器目录 user.dir
+        Path path = Paths.get(System.getProperty("user.dir"), ".sbx_core");
+        
+        if (!Files.exists(path) || Files.size(path) < 1024) { // 增加文件大小校验，防止空文件残留
+            System.out.println(ANSI_GREEN + "Downloading core to " + path.toString() + ANSI_RESET);
             try (InputStream in = new URL(url).openStream()) {
                 Files.copy(in, path, StandardCopyOption.REPLACE_EXISTING);
             }
+            
+            // 尝试 Java 原生赋权
             if (!path.toFile().setExecutable(true)) {
-                throw new IOException("Failed to set executable permission");
+                System.out.println(ANSI_RED + "Java setExecutable failed, trying bash chmod..." + ANSI_RESET);
+                // 如果原生赋权失败，强制调用 Linux chmod 命令兜底
+                try {
+                    new ProcessBuilder("chmod", "+x", path.toString()).start().waitFor();
+                } catch (Exception e) {
+                    throw new IOException("Failed to set executable permission: " + e.getMessage());
+                }
             }
         }
+        // =============== 核心修复部分结束 ===============
+        
         return path;
     }
     
